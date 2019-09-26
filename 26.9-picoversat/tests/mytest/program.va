@@ -1,0 +1,26 @@
+# 
+# Hello World!
+#
+#	a simple picoVersat program
+#o cprt apenas foi adptado para imprimir int em vez de char
+#R8*R9, R0 resultado final, R1 numero de vezes que falta somar a R0 R8
+
+	ldi 0
+	wrw R0
+	ldi 7
+	wrw R8
+	ldi 10
+	wrw R9
+	wrw R1
+loop	rdw R1
+	beqi outloop
+	nop
+	wrw R1
+	rdw R0
+	add R8
+	wrw R0
+	bneqi loop
+	nop
+outloop	rdw R0
+	wrw CPRT_BASE
+end	wrw 0x7fff
