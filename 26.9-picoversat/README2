@@ -1,0 +1,3 @@
+O multiplicador encontra-se na pasta mytest dentro da pasta tests
+O ficheiro xcprint.v foi alterado para imprimir int em vez de char
+O ficheiro make da pasta simulation/icarus/ foi alterado para correr o programa do multiplicador
