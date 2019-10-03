@@ -1,0 +1,13 @@
+1 O primeiro computador moderno foi o Analytical Computer inventado por Charles Babbage em 1833
+
+2 A diferença entre um sistema embebido e um computador é o do propósito de cada um. Enquanto que um computador pode ser reconfigurado para ter um novo propósito, o sistema embebido é dedicado a apenas um propósito. Ambos também diferem um pouco entre si devido ao seu design.
+
+3 O tipo de tecnologia de transistor mais comum é o tipo: MOS. O tamanho mais avançado deste tipo de transistor é 7nm. Podem existir milhares de milhões de transistores por chip (10⁹ transistores).
+
+4 SellingPrice=1000, UnitCost=500, Volume=1000000, ProfitMargin=0.3, NRE=?
+Profit=V(SP-UC)-NRE
+NRE=V(SP-UC)-PM*SP*V
+NRE=1000000(500)-300000000
+NRE=200000000 (200 Milhões)
+
+5 Assumindo que o ganho máximo seria WH/2, sendo W o tempo desde o início até ao fim de vida do produto e H a máxima densidade de dinheiro durante o tempo de vida do produto, o dinheiro relativo perdido corresponde a 5WH/16. O dinheiro obtido comecando apenas apos W/4 e 3WH/16.
