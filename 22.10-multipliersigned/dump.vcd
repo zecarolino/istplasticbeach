@@ -1,0 +1,120 @@
+$date
+	Tue Oct 22 21:14:16 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module add_shft_mul_tb $end
+$var wire 1 ! done $end
+$var wire 16 " c [15:0] $end
+$var reg 8 # a [7:0] $end
+$var reg 8 $ b [7:0] $end
+$var reg 1 % clk $end
+$var reg 1 & rst $end
+$var reg 1 ' start $end
+$scope module mult0 $end
+$var wire 8 ( a [7:0] $end
+$var wire 8 ) b [7:0] $end
+$var wire 1 % clk $end
+$var wire 1 & rst $end
+$var wire 1 ' start $end
+$var wire 1 ! done $end
+$var reg 16 * c [15:0] $end
+$var reg 4 + counter [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1000 +
+b0 *
+b1100100 )
+b10111111 (
+0'
+1&
+1%
+b1100100 $
+b10111111 #
+b0 "
+1!
+$end
+#10000
+0%
+#20000
+1%
+#21000
+0&
+#30000
+0%
+#40000
+1%
+#41000
+1'
+#50000
+0%
+#60000
+0!
+b0 +
+1%
+#61000
+0'
+#70000
+0%
+#80000
+b1 +
+1%
+#90000
+0%
+#100000
+b10 +
+1%
+#110000
+0%
+#120000
+b11 +
+b1101111110000000 "
+b1101111110000000 *
+1%
+#130000
+0%
+#140000
+b1110111111000000 "
+b1110111111000000 *
+b100 +
+1%
+#150000
+0%
+#160000
+b101 +
+b1111011111100000 "
+b1111011111100000 *
+1%
+#170000
+0%
+#180000
+b1101101101110000 "
+b1101101101110000 *
+b110 +
+1%
+#190000
+0%
+#200000
+b111 +
+b1100110100111000 "
+b1100110100111000 *
+1%
+#210000
+0%
+#220000
+b1110011010011100 "
+b1110011010011100 *
+1!
+b1000 +
+1%
+#230000
+0%
+#240000
+1%
