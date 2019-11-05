@@ -37,7 +37,7 @@ module fibonnacci_tb ();
 
       a= 4'b0;
 
-      #(20*T)
+      #(21*T)
 
       $finish;
    end
