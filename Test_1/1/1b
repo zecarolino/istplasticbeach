@@ -1,0 +1,9 @@
+Profit=PM*Sales(d=1mes)=Sales(d=1mes) -NRE -V*UC
+
+NRE = SALES(d=1) - PM*Sales(d=1) - V*UC
+
+SAles (d=1) = (14*14/30)*3M = 19,6M
+
+PM=0.25
+
+NRE = 0.75*19,6*(10^6) - 10*(10^6)*1 = 4.7M€

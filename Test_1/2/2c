@@ -1,0 +1,4 @@
+Não suporta visto que basta o a mudar a meio da multiplicação para que o resultado va dar diferente do esperado.
+Apesar de se guardar em cada estagio o valor anterior para ser a este somado a ou 0, não é guardado o valor de a.
+
+Seria preciso, para funcionar em pipeline, que o fosse guardado o numero a em registo. Guardava-se assim um total de 4 numeros (todos estes seriam o input a) que a cada 4 clk seria rescrito por um novo valor de entrada.

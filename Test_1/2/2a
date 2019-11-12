@@ -1,0 +1,10 @@
+Este modulo é um unsigned multiplier de 4 bits com produtos com podutos parciais obtidos atraves de shifts do valor a multiplicar
+
+O pior caso de latencia é aquele em que b é 1111 visto que requer que a cada y e c seja somado o valor de a shifted e o valor do y anterior.
+
+com b = 1111
+y0=a
+y1=yo+a<<1=a+a<<1
+y2=y1+a<<2=a+a<<1+a<<2
+c=y2+a<<3=a+a<<1+a<<2+a<<3 
+

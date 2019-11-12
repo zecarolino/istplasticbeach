@@ -1,0 +1,16 @@
+W = 15
+Maxrevenue = 3M = H
+
+Revenue sem delay:
+	(15/2) * 3M = 22,5M
+Revenue maxima -2 M
+	20,5M
+Revenue(d)
+	((W-d)/2)*maxrevenue density for delay=d
+maxrevenue density for delay =d
+	((W-d)/W)*H
+Revenue(d)
+	(((W-d)^2)/2W)*H
+Revenue (d) = 20,5M
+
+	d<=0,68 (=20 dias)
