@@ -25,13 +25,13 @@ module average_tb ();
 
       x = 4'b0101;
 
-      @(posedge clk) begin
-	end
+      @(posedge clk) rst=0;
 
-      #5 @(posedge clk) #1 start=1;
-      @(posedge clk) #1 start=0;
 
-      @(posedge done) $display("%d", c);
+      @(posedge clk) x = 4'b0111;
+      @(posedge clk) x = 4'b0100;
+      @(posedge clk) x = 4'b1000;
+      @(posedge clk) x = 4'b1111;
 
       @(posedge clk) $finish;
    end
