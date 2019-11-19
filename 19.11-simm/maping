@@ -1,0 +1,13 @@
+um address e composto por 21 bits addr[20:0]
+
+para addr [20:19] = 00 e addr[18:0]=x
+acede-se ao primeiro simm
+
+para addr [20:19] = 01 e addr[18:0]=x
+acede-se ao segundo simm
+
+para addr [20:19] = 10 e addr[18:0]=x
+acede-se ao terceiro simm
+
+para addr [20:19] = 11 e addr[18:0]=x
+acede-se ao quarto simm
