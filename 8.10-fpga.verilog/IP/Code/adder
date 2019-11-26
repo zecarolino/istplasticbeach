@@ -1,0 +1,61 @@
+#! /usr/bin/vvp
+:ivl_version "10.1 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x55dcfdf5ee10 .scope module, "xadder_tb" "xadder_tb" 2 3;
+ .timescale -9 -12;
+v0x55dcfdf7f4a0_0 .var "input1", 31 0;
+v0x55dcfdf7f590_0 .var "input2", 31 0;
+v0x55dcfdf7f660_0 .net "soma", 31 0, L_0x55dcfdf7f760;  1 drivers
+S_0x55dcfdf5ef90 .scope module, "uut" "xadder" 2 10, 3 2 0, S_0x55dcfdf5ee10;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "input1"
+    .port_info 1 /INPUT 32 "input2"
+    .port_info 2 /OUTPUT 32 "soma"
+P_0x55dcfdf5f160 .param/l "SIZE" 0 3 3, +C4<00000000000000000000000000100000>;
+v0x55dcfdf5f250_0 .net "input1", 31 0, v0x55dcfdf7f4a0_0;  1 drivers
+v0x55dcfdf7f250_0 .net "input2", 31 0, v0x55dcfdf7f590_0;  1 drivers
+v0x55dcfdf7f330_0 .net "soma", 31 0, L_0x55dcfdf7f760;  alias, 1 drivers
+L_0x55dcfdf7f760 .arith/sum 32, v0x55dcfdf7f4a0_0, v0x55dcfdf7f590_0;
+    .scope S_0x55dcfdf5ee10;
+T_0 ;
+    %vpi_call 2 17 "$dumpfile", "adder.vcd" {0 0 0};
+    %vpi_call 2 18 "$dumpvars" {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55dcfdf7f4a0_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55dcfdf7f590_0, 0, 32;
+    %delay 25000, 0;
+    %pushi/vec4 1146552097, 0, 32;
+    %store/vec4 v0x55dcfdf7f4a0_0, 0, 32;
+    %pushi/vec4 591733487, 0, 32;
+    %store/vec4 v0x55dcfdf7f590_0, 0, 32;
+    %delay 25000, 0;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0x55dcfdf7f4a0_0, 0, 32;
+    %pushi/vec4 4294967295, 0, 32;
+    %store/vec4 v0x55dcfdf7f590_0, 0, 32;
+    %delay 25000, 0;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0x55dcfdf7f4a0_0, 0, 32;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0x55dcfdf7f590_0, 0, 32;
+    %delay 25000, 0;
+    %pushi/vec4 15, 0, 32;
+    %store/vec4 v0x55dcfdf7f4a0_0, 0, 32;
+    %pushi/vec4 15, 0, 32;
+    %store/vec4 v0x55dcfdf7f590_0, 0, 32;
+    %delay 25000, 0;
+    %vpi_call 2 39 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "xadder_tb.v";
+    "xadder.v";

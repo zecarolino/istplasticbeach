@@ -1,0 +1,75 @@
+$date
+	Tue Nov 26 22:14:52 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module mc_tb $end
+$var wire 1 ! clb $end
+$var wire 1 " cl $end
+$var wire 1 # blb $end
+$var wire 1 $ bl $end
+$var reg 1 % drive_bl $end
+$var reg 1 & drive_blb $end
+$var reg 1 ' sw $end
+$scope module mc0 $end
+$var wire 1 ' sw $end
+$var wire 1 ! blb $end
+$var wire 1 " bl $end
+$var reg 1 " bl_reg $end
+$var reg 1 ! blb_reg $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x'
+x&
+x%
+x$
+x#
+1"
+x!
+$end
+#1000
+0!
+#100000
+1&
+0%
+#101000
+1'
+#201000
+z$
+z#
+0'
+#301000
+z&
+z%
+#302000
+x$
+x#
+1'
+#402000
+0#
+1$
+0&
+1%
+#503000
+z$
+z#
+0'
+#603000
+z&
+z%
+#604000
+x$
+x#
+1'
+#704000
+z$
+z#
+0'
+#804000

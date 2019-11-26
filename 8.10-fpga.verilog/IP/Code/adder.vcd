@@ -1,0 +1,56 @@
+$date
+	Thu Oct 10 18:47:13 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module xadder_tb $end
+$var wire 32 ! soma [31:0] $end
+$var reg 32 " input1 [31:0] $end
+$var reg 32 # input2 [31:0] $end
+$scope module uut $end
+$var wire 32 $ input1 [31:0] $end
+$var wire 32 % input2 [31:0] $end
+$var wire 32 & soma [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 &
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#25000
+b100011010001010010001011101111 #
+b100011010001010010001011101111 %
+b1100111100111000010001000010000 !
+b1100111100111000010001000010000 &
+b1000100010101101111111100100001 "
+b1000100010101101111111100100001 $
+#50000
+b11111111111111111111111111111111 #
+b11111111111111111111111111111111 %
+b0 !
+b0 &
+b1 "
+b1 $
+#75000
+b10 !
+b10 &
+b1 #
+b1 %
+#100000
+b1111 #
+b1111 %
+b11110 !
+b11110 &
+b1111 "
+b1111 $
+#125000

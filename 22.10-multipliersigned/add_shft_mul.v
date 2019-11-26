@@ -3,8 +3,8 @@
 module add_shft_mul (
                      input         clk,
                      input         rst,
-                     
-                     input signed [7:0]   a, 
+
+                     input signed [7:0]   a,
                      input signed [7:0]   b,
                      output reg signed [15:0] c,
                      input         start,
@@ -23,8 +23,8 @@ module add_shft_mul (
        counter <= 4'd0;
      else if (counter != 4'd8)
        counter <= counter + 1'b1;
-   
-   
+
+
      always@(posedge clk)
      if(rst)
        c <= 16'd0;
@@ -44,23 +44,23 @@ module add_shft_mul_tb ();
    wire [15:0] c;
    reg         start;
    wire        done;
-   
+
    add_shft_mul mult0 (
                        .clk(clk),
                        .rst(rst),
-                     
-                       .a(a), 
+
+                       .a(a),
                        .b(b),
                        .c(c),
                        .start(start),
                        .done(done)
-                     );   
+                     );
 
    initial begin
 
       $dumpfile("dump.vcd");
       $dumpvars;
-      
+
       rst = 1;
       clk = 1;
       start = 0;
@@ -74,10 +74,10 @@ module add_shft_mul_tb ();
       @(posedge clk) #1 start=0;
 
       @(posedge done) $display("%d", c);
-      
+
       @(posedge clk) $finish;
    end
-   
+
    always #10 clk = ~clk;
- 
+
 endmodule
