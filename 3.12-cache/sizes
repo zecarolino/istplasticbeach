@@ -1,0 +1,14 @@
+main mem size 32 gB (log (32gB)=35) => 35 addr bits
+cache size 8 kB
+line size 8 words
+word size 32bits = 4 bytes
+directly mapped
+
+#lines = 8kiB/8*4B = 256=#set
+endereco
+set index (8 bits)
+offset bits(3 bits)
+tag bits 35-8-3=24
+
+256 linhas
+cada linha = 24 + 8*32 #bits per line
