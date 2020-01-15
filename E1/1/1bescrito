@@ -1,0 +1,19 @@
+word size 4B
+numerber of words 1024
+mem size 1024 * 4B = 4kB
+
+number of roms needed for the 8bit rom = 32/4=8
+
+8 small ROM modules
+
+os outputs de todas os modules juntos num so 32 bit bus com (altas impedancias?) que por sua vez passa por um desmultiplexer que com 2 bits escolhe qual dos bytes e que e feito output
+
+CS de cada module e obtido atraves de um multiplexer com 3 bits de escolha pondo apenas a 1 um dos modules
+
+CAS e RAS em paralelo para todos
+
+o Data out e resultante do desmultiplexer que escolhe qual dos 4 bytes e que e feito output
+
+ADDR e composto de 15 bits os 10 menos significativos para o address do module ROM
+os 11:10 sao os 2 bits de escolha dos 8 bits para output da ROM construida
+14:12 sao os 3 bits de escolha de qual ROM module mais pequeno se via retirar a palavra 

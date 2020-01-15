@@ -1,0 +1,6 @@
+RO = 0.03
+Refresh interval = 10ms
+RO=row access time * number of rows / refresh interval
+2048 rows
+
+row time= 0.03 * 0.01 / 2048 = 146ns

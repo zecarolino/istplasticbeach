@@ -1,0 +1,20 @@
+8kB write back/ write allocate
+Fully associative
+32B line
+4B word
+memory 512MB
+MRU and dirty bit
+
+offset = 32B line / 4B word = 8 .... log2(8)=3 3bits para offset
+
+address size = log2(512MB) = 29 bits
+
+index = 0 bits visto que e full associative 1 line
+
+tag=29 - 0 - 3 -2(4B word) = 24 bits
+
+28:5 tag
+4:2 offset
+1:0 selecting B of a word
+
+number of ways = 8kB/32B = 2^8 = 256 ways

@@ -1,0 +1,19 @@
+Cd = 400 * 10^-15 F
+Vdd = 1.8 V
+Cc??
+pre charge= Vdd/2
+
+V1 - V0 = 300 mV
+
+independentemente de celula ter 1 ou 0 Vd ta sempre carregado a Vdd/2 = 0.9 V
+Se Vc inicialmente  a 1 entao Vc=1.8 e 0 se inicialmete a 0
+Vc e Vd apos fechar switches ambos iguais a V1 se inicialmente la tava 1 e V0 se 0
+
+aplicando as leis Q = Vd*Cd + Vc*Cc e Q constante no tempo
+
+V1(Cd + Cc)=0.9*Cd + 1.8*Cc
+V0(Cd + Cc)=0.9*Cd
+
+V1 - V0 = (0.9Cd + 1.8Cc)/(Cd + Cc) - (0.9Cd)/(Cd + Cc) = 1.8Cc/(Cc + Cd) = 0.3
+
+Cc=0.3Cd/1.5 = 80fF

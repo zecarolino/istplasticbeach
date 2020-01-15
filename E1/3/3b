@@ -1,0 +1,17 @@
+8kB da para 2k ints(4B)
+
+ordem de escrita na ram y>x>y>x>y>x.....
+
+inicialmente escreve 1023:0 de x e y na cache = 8kb (memory to cache)
+como e write back allocate so se escreve para a cache quando se quer escrever e para a memoria quando se vai ocupar uma posicao da cache que tem valor diferente da memoria
+a memoria fica preenchida passa-se a usar MRU
+
+no final da iteracao 1023 rescreve um valor de X devido a MRU causando a escrita de 4B para memoria e 4 B para cache
+as seguintes 1024 iteracoes
+escreve-se  sempre 8B para cache e para memoria. Para ter x em cache e poder ser usado que causa a passagem de um valor de Y para a memoria e do Y para a cache rescrevendo um X que passa para memoria
+1024*8B para memoria e igual para cache
+
+final para memoria = 8kB + 4B = 8196B
+
+final para cache = 8kB + 8kB + 4B = 16388B
+

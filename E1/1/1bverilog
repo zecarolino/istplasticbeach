@@ -1,0 +1,70 @@
+module BIGROM (
+	input CAS,
+	input RAS,
+	input [14:0]ADDR,
+	output [7:0]byte);
+
+	reg [7:0] CS;
+	
+	#todos os ROM modules recebem o CAS e RAS
+
+	wire [31:0] data_out;
+
+   ROM module1 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module2 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module3 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module4 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module5 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module6 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module7 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+   ROM module8 (
+                       .address(ADDR[9:0]),
+                       .data_out(data_out)
+                     );
+
+
+	assign byte = (ADDR[11:10]==2'b00) ? data_out[7:0]: ((ADDR[11:10]==2'b01) ? data_out[15:8]:((ADDR[11:10]==2'b10) ? data_out[23:16]:data_out[31:24])));
+
+	always @ (ADDR)
+	begin
+		case (ADDR[14:12])
+			3'b000 : CS=8'b00000001;
+			3'b001 : CS=8'b00000010;
+			3'b010 : CS=8'b00000100;
+			3'b011 : CS=8'b00001000;
+			3'b100 : CS=8'b00010000;
+			3'b101 : CS=8'b00100000;
+			3'b110 : CS=8'b01000000;
+			3'b111 : CS=8'b10000000;
+		endcase
+	end
+
+endmodule
