@@ -1,0 +1,23 @@
+read
+
+Fazer precharge
+delta T = Cd*Vdd/2*Id = 9 ms
+
+Ligar a celula
+delta T = Cd*deltaV/2*Id = 250 ns
+
+Ligar o sense aplifier (90% de Vdd)
+delta T = Cd*((1.62-0.9-0.025)/2)/Id = 6.95 ms
+
+Desligar os switches para a celula e o sense aplifier(pre charge da proxima)
+
+Write
+
+Precharge
+delta T = Cd*Vdd/2*Id = 9 ms
+
+Ligar a celula
+delta T = Cd*deltaV/2*Id = 250 ns
+
+Desligar o switch celula (precharge do proximo)
+

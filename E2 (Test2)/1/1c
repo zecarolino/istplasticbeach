@@ -1,0 +1,6 @@
+0 Bytes sao transferido da cache para memoria visto que com write-through/write-not-allocate e sempre escrito tanto na memoria como na cache simultaneamente se o numero for utilizado posteriormente ou só na memória caso contrário
+
+Os bytes que são escritos da memoria para a cache são 8188Bytes visto que todos os h's são lidos são 16 ints, os x's desde 0 até 1022 são lidos como tal 1023 ints e também os y's são utilizados sempre posteriormente como tal são escritos tambem para a cache desde o 8 ate 1015 , 1008 ints.
+Um total de 2047 ints sendo cada um 4Bytes da 8188Bytes
+
+No final de cada segundo ciclo for o y ja não é reutilizado como tal este é escrito apenas para a memória. Sendo que são utilizados 1008 y's são escritos 4032 Bytes diretamente para a memória.

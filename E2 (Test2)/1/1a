@@ -1,0 +1,7 @@
+offset = 32B line / 4B word = 8 .... log2(8)=3 3bits para offset
+
+address size = log2(4GB) = 32 bits
+
+index = 4KB cache /(2 way * 32B line) = 64 .... log2(64)=6 6 bits para index
+
+tag = 32 - 6 - 3 - 2 (4B word) = 21 bits

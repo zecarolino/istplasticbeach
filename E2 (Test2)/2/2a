@@ -1,0 +1,9 @@
+32MB SRAM
+Nibble cells = 4 bits per cell
+
+32M * 8 /4 = 64M = 2^26 = 2^13 * 2^13 = 8192 * 8192 bits array
+
+module SRAM ()
+;
+
+endmodule

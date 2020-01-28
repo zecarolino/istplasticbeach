@@ -1,0 +1,18 @@
+a cache tem espaco para 1024 ints visto que estes ocupam 4B
+
+No primeiro ciclo: h e todo ele guardado em cache (16 ints)
+		   x e guardado em cache do 0 a 15 (16 ints)
+		   e o y tambem visto que com a politica de write-through/write-not-allocate
+		  como ele e reutilizado em ciclos seguintes (isto do segundo for) ele e guardado em
+		   cache(1 ints)
+
+Nos subsequentes ciclos:
+		   h ja esta todo ele em cache por isso nao se guarda mais
+		   y e guardado porque o y foi incrementado (1 ints)
+		   x vai agora de 1 a 16, depois 2 a 17. E preciso ler um novo x por cada ciclo (1 int)
+
+E na iteracao 505 que a cache fica cheia
+Na primeira restam 1024 - 17 = 1007
+Por cada interacao seguinte sao menos 2 espacos : 1007/2 = 504 + 1 (primeira) = 505
+
+

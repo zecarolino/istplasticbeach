@@ -1,0 +1,39 @@
+cada modulo da DRAM dada tem 4MB de memória
+Como tal é preciso 16 destes chips
+Cada um deles tem como output 4 bits e e preciso 32 como tal 8 dos chips tem que funcionar simultaneamente
+
+module memory_module (
+		   input clk,
+                   input     cas,
+		   input    ras,
+		   input [10:0]addr,
+		   input write,
+                   output reg [31:0] data
+                   );
+
+   wire [3:0]                      data_out[15:0];
+   
+   genvar                           i;
+   generate
+      for (i=0; i<16; i=i+1) begin:
+         dram dram16 (
+		   .write_en(addr[10]&&write),
+		   .output_en(addr[10]), #Chip select estao sempre 8 modulos a dar output (2 grupos de 8 modulos)
+		   .cas(cas),
+		   .ras(ras),
+                   .addr(addr[9:0]),
+                   .data_out(data_out[i]),
+                   );
+      end
+   endgenerate
+
+   always @ (clk)
+	begin
+	   if (addr[10]==1)
+		data<=data_out[15:8];
+	   else
+		data<=data_out[7:0];
+	end
+ 
+endmodule
+

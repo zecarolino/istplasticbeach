@@ -1,0 +1,29 @@
+module dram (
+             input write_en,
+             input output_en,
+             input cas,
+             input ras,
+             input [3:0] addr,
+             inout [3:0] data
+             );
+
+ reg rasreg [3:0];
+ reg [3:0]                      cells[255:0];
+
+always @ *
+begin
+	if (ras==1 & cas!=1)
+		rasreg<=addr;
+	else if (cas==1 & ras ==1)
+	begin
+		if(write_en==1)
+			cells[rasreg*16+addr]<=data;
+		else if (output_en == 1)
+			data<=cells[rasreg*16+addr];
+	end
+end
+
+endmodule;
+
+
+

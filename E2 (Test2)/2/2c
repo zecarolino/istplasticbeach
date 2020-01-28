@@ -1,0 +1,6 @@
+A SRAM comparativamente com DRAM e pelo menos uma ordem de grandeza menor no tempo de acesso á memória.
+Enquanto que a SRAM leva dezenas de nanosegundos a DRAM pode chegar a levar centenas de nanosegundos
+
+No entanto a DRAM ocupa menos espaço por memória do que a SRAM. A DRAM tem como tal uma densidade de memória mais alta.
+
+A SRAM como não guarda a memória em condensadores mas sim em transistores sai mais cara mas no entanto também não sofre da merda de memória devido a leaks de corrente que a DRAM tem devido aos condensadores, obrigando a ser refrescada.
