@@ -1,0 +1,4 @@
+# 
+
+                    ldi 0x1
+                    wrw RegDigit0

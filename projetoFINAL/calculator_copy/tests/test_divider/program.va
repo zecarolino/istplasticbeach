@@ -1,0 +1,22 @@
+# RegDiv0 - Q 
+# RegDiv1 - q
+# RegDiv2 - resto
+# RegDiv3 - quociente
+# RegDiv4 - start
+# RegDiv5 - done
+
+                    ldi 9
+                    wrw RegDiv0
+                    ldi 10
+                    wrw RegDiv1
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division       beqi wait_division
+                    rdw RegDiv5 
+                    rdw RegDiv2
+                    rdw RegDiv3
+                    nop
+                    wrw 0x7ff

@@ -1,0 +1,224 @@
+test/add 3c3
+< Execution time in clock cycles: 68
+---
+> Execution time in clock cycles: 81
+test/addargs 3c3
+< Execution time in clock cycles: 144
+---
+> Execution time in clock cycles: 156
+test/addr 3c3
+< Execution time in clock cycles: 85
+---
+> Execution time in clock cycles: 99
+test/args 3c3
+< Execution time in clock cycles: 144
+---
+> Execution time in clock cycles: 156
+test/band 3c3
+< Execution time in clock cycles: 68
+---
+> Execution time in clock cycles: 81
+test/bor 3c3
+< Execution time in clock cycles: 79
+---
+> Execution time in clock cycles: 92
+test/bxor 3c3
+< Execution time in clock cycles: 68
+---
+> Execution time in clock cycles: 81
+test/chr 3c3
+< Execution time in clock cycles: 211
+---
+> Execution time in clock cycles: 223
+test/com 3c3
+< Execution time in clock cycles: 69
+---
+> Execution time in clock cycles: 82
+test/eq 3c3
+< Execution time in clock cycles: 93
+---
+> Execution time in clock cycles: 106
+test/eqf 3c3
+< Execution time in clock cycles: 91
+---
+> Execution time in clock cycles: 104
+test/fdiv 3c3
+< Execution time in clock cycles: 46
+---
+> Execution time in clock cycles: 58
+test/fib 3c3
+< Execution time in clock cycles: 4129
+---
+> Execution time in clock cycles: 4141
+test/fmod 3c3
+< Execution time in clock cycles: 46
+---
+> Execution time in clock cycles: 58
+test/fmul 3c3
+< Execution time in clock cycles: 303
+---
+> Execution time in clock cycles: 316
+test/for 4c4
+< Execution time in clock cycles: 642
+---
+> Execution time in clock cycles: 654
+test/gcd 3c3
+< Execution time in clock cycles: 537
+---
+> Execution time in clock cycles: 592
+test/ge 3c3
+< Execution time in clock cycles: 97
+---
+> Execution time in clock cycles: 110
+test/ge2 3c3
+< Execution time in clock cycles: 97
+---
+> Execution time in clock cycles: 110
+test/gef 3c3
+< Execution time in clock cycles: 95
+---
+> Execution time in clock cycles: 108
+test/gt 3c3
+< Execution time in clock cycles: 98
+---
+> Execution time in clock cycles: 111
+test/gtf 3c3
+< Execution time in clock cycles: 96
+---
+> Execution time in clock cycles: 109
+test/hello 4c4
+< Execution time in clock cycles: 1105
+---
+> Execution time in clock cycles: 1118
+test/highnib 3c3
+< Execution time in clock cycles: 298
+---
+> Execution time in clock cycles: 311
+test/if 3c3
+< Execution time in clock cycles: 118
+---
+> Execution time in clock cycles: 134
+test/index 3c3
+< Execution time in clock cycles: 75
+---
+> Execution time in clock cycles: 89
+test/index2 3c3
+< Execution time in clock cycles: 89
+---
+> Execution time in clock cycles: 103
+test/index3 3c3
+< Execution time in clock cycles: 89
+---
+> Execution time in clock cycles: 103
+test/land 3c3
+< Execution time in clock cycles: 104
+---
+> Execution time in clock cycles: 118
+test/le 3c3
+< Execution time in clock cycles: 98
+---
+> Execution time in clock cycles: 111
+test/le2 3c3
+< Execution time in clock cycles: 98
+---
+> Execution time in clock cycles: 111
+test/lef 3c3
+< Execution time in clock cycles: 96
+---
+> Execution time in clock cycles: 109
+test/len 3c3
+< Execution time in clock cycles: 259
+---
+> Execution time in clock cycles: 272
+test/lnot 3c3
+< Execution time in clock cycles: 91
+---
+> Execution time in clock cycles: 104
+test/lor 3c3
+< Execution time in clock cycles: 105
+---
+> Execution time in clock cycles: 119
+test/lsh 3c3
+< Execution time in clock cycles: 97
+---
+> Execution time in clock cycles: 110
+test/lt 3c3
+< Execution time in clock cycles: 97
+---
+> Execution time in clock cycles: 110
+test/ltf 3c3
+< Execution time in clock cycles: 95
+---
+> Execution time in clock cycles: 108
+test/mod 3c3
+< Execution time in clock cycles: 1235
+---
+> Execution time in clock cycles: 1247
+test/mul 3c3
+< Execution time in clock cycles: 317
+---
+> Execution time in clock cycles: 329
+test/ne 3c3
+< Execution time in clock cycles: 93
+---
+> Execution time in clock cycles: 106
+test/nef 3c3
+< Execution time in clock cycles: 91
+---
+> Execution time in clock cycles: 104
+test/neg 3c3
+< Execution time in clock cycles: 70
+---
+> Execution time in clock cycles: 83
+test/printhex 4c4
+< Execution time in clock cycles: 1053
+---
+> Execution time in clock cycles: 1086
+test/printx 3c3
+< Execution time in clock cycles: 776
+---
+> Execution time in clock cycles: 788
+test/prtx 3c3
+< Execution time in clock cycles: 948
+---
+> Execution time in clock cycles: 972
+test/ret 3c3
+< Execution time in clock cycles: 46
+---
+> Execution time in clock cycles: 58
+test/retfunc 3c3
+< Execution time in clock cycles: 102
+---
+> Execution time in clock cycles: 114
+test/rsh 3c3
+< Execution time in clock cycles: 97
+---
+> Execution time in clock cycles: 110
+test/set 3c3
+< Execution time in clock cycles: 136
+---
+> Execution time in clock cycles: 150
+test/setvar 3c3
+< Execution time in clock cycles: 152
+---
+> Execution time in clock cycles: 166
+test/six 4c4
+< Execution time in clock cycles: 50
+---
+> Execution time in clock cycles: 62
+test/sub 3c3
+< Execution time in clock cycles: 70
+---
+> Execution time in clock cycles: 83
+test/switch 3c3
+< Execution time in clock cycles: 83
+---
+> Execution time in clock cycles: 96
+test/vec 4c4
+< Execution time in clock cycles: 601
+---
+> Execution time in clock cycles: 624
+test/z 4c4
+< Execution time in clock cycles: 73
+---
+> Execution time in clock cycles: 86

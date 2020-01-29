@@ -1,0 +1,252 @@
+/* run with:
+ * $ cpp -DN_W=5 ends.cbc > ends.bc
+ * $ bc ends.bc > ends.h
+ */
+#include "ends.hbc" /* file 'mem_ends.h' with '**' replaced by '^' (power) */
+print "#define CTRL_REGF_BASE "
+print 0+CTRL_REGF_BASE
+print "\n"
+print "#define DMA_BASE "
+print 0+DMA_BASE
+print "\n"
+print "#define PROG_MEM_BASE "
+print 0+PROG_MEM_BASE
+print "\n"
+print "#define CONF_MEM_BASE "
+print 0+CONF_MEM_BASE
+print "\n"
+print "#define ENG_BASE "
+print 0+ENG_BASE
+print "\n"
+print "#define N_W "
+print 0+N_W
+print "\n"
+print "#define DMA_EXT_ADDR_ADDR "
+print 0+DMA_EXT_ADDR_ADDR
+print "\n"
+print "#define DMA_INT_ADDR_ADDR "
+print 0+DMA_INT_ADDR_ADDR
+print "\n"
+print "#define DMA_SIZE_ADDR "
+print 0+DMA_SIZE_ADDR
+print "\n"
+print "#define DMA_DIRECTION_ADDR "
+print 0+DMA_DIRECTION_ADDR
+print "\n"
+print "#define DMA_STATUS_ADDR "
+print 0+DMA_STATUS_ADDR
+print "\n"
+print "#define MEM_CONF_ITER_OFFSET "
+print 0+MEM_CONF_ITER_OFFSET
+print "\n"
+print "#define MEM_CONF_PER_OFFSET "
+print 0+MEM_CONF_PER_OFFSET
+print "\n"
+print "#define MEM_CONF_DUTY_OFFSET "
+print 0+MEM_CONF_DUTY_OFFSET
+print "\n"
+print "#define MEM_CONF_SELA_OFFSET "
+print 0+MEM_CONF_SELA_OFFSET
+print "\n"
+print "#define MEM_CONF_START_OFFSET "
+print 0+MEM_CONF_START_OFFSET
+print "\n"
+print "#define MEM_CONF_SHIFT_OFFSET "
+print 0+MEM_CONF_SHIFT_OFFSET
+print "\n"
+print "#define MEM_CONF_INCR_OFFSET "
+print 0+MEM_CONF_INCR_OFFSET
+print "\n"
+print "#define MEM_CONF_DELAY_OFFSET "
+print 0+MEM_CONF_DELAY_OFFSET
+print "\n"
+print "#define MEM_CONF_RVRS_OFFSET "
+print 0+MEM_CONF_RVRS_OFFSET
+print "\n"
+print "#define MEM_CONF_OFFSET "
+print 0+MEM_CONF_OFFSET
+print "\n"
+print "#define ALU_CONF_SELA_OFFSET "
+print 0+ALU_CONF_SELA_OFFSET
+print "\n"
+print "#define ALU_CONF_SELB_OFFSET "
+print 0+ALU_CONF_SELB_OFFSET
+print "\n"
+print "#define ALU_CONF_FNS_OFFSET "
+print 0+ALU_CONF_FNS_OFFSET
+print "\n"
+print "#define ALU_CONF_OFFSET "
+print 0+ALU_CONF_OFFSET
+print "\n"
+print "#define ALU_LITE_CONF_SELA_OFFSET "
+print 0+ALU_LITE_CONF_SELA_OFFSET
+print "\n"
+print "#define ALU_LITE_CONF_SELB_OFFSET "
+print 0+ALU_LITE_CONF_SELB_OFFSET
+print "\n"
+print "#define ALU_LITE_CONF_FNS_OFFSET "
+print 0+ALU_LITE_CONF_FNS_OFFSET
+print "\n"
+print "#define ALU_LITE_CONF_OFFSET "
+print 0+ALU_LITE_CONF_OFFSET
+print "\n"
+print "#define MUL_CONF_SELA_OFFSET "
+print 0+MUL_CONF_SELA_OFFSET
+print "\n"
+print "#define MUL_CONF_SELB_OFFSET "
+print 0+MUL_CONF_SELB_OFFSET
+print "\n"
+print "#define MUL_CONF_LONHI_OFFSET "
+print 0+MUL_CONF_LONHI_OFFSET
+print "\n"
+print "#define MUL_CONF_DIV2_OFFSET "
+print 0+MUL_CONF_DIV2_OFFSET
+print "\n"
+print "#define MUL_CONF_OFFSET "
+print 0+MUL_CONF_OFFSET
+print "\n"
+print "#define BS_CONF_SELA_OFFSET "
+print 0+BS_CONF_SELA_OFFSET
+print "\n"
+print "#define BS_CONF_SELB_OFFSET "
+print 0+BS_CONF_SELB_OFFSET
+print "\n"
+print "#define BS_CONF_LNA_OFFSET "
+print 0+BS_CONF_LNA_OFFSET
+print "\n"
+print "#define BS_CONF_LNR_OFFSET "
+print 0+BS_CONF_LNR_OFFSET
+print "\n"
+print "#define BS_CONF_OFFSET "
+print 0+BS_CONF_OFFSET
+print "\n"
+print "#define CLEAR_CONFIG_ADDR "
+print 0+CLEAR_CONFIG_ADDR
+print "\n"
+print "#define MEM0A_CONFIG_ADDR "
+print 0+MEM0A_CONFIG_ADDR
+print "\n"
+print "#define MEM0B_CONFIG_ADDR "
+print 0+MEM0B_CONFIG_ADDR
+print "\n"
+print "#define MEM1A_CONFIG_ADDR "
+print 0+MEM1A_CONFIG_ADDR
+print "\n"
+print "#define MEM1B_CONFIG_ADDR "
+print 0+MEM1B_CONFIG_ADDR
+print "\n"
+print "#define MEM2A_CONFIG_ADDR "
+print 0+MEM2A_CONFIG_ADDR
+print "\n"
+print "#define MEM2B_CONFIG_ADDR "
+print 0+MEM2B_CONFIG_ADDR
+print "\n"
+print "#define MEM3A_CONFIG_ADDR "
+print 0+MEM3A_CONFIG_ADDR
+print "\n"
+print "#define MEM3B_CONFIG_ADDR "
+print 0+MEM3B_CONFIG_ADDR
+print "\n"
+print "#define ALU0_CONFIG_ADDR "
+print 0+ALU0_CONFIG_ADDR
+print "\n"
+print "#define ALU1_CONFIG_ADDR "
+print 0+ALU1_CONFIG_ADDR
+print "\n"
+print "#define ALU_LITE0_CONFIG_ADDR "
+print 0+ALU_LITE0_CONFIG_ADDR
+print "\n"
+print "#define ALU_LITE1_CONFIG_ADDR "
+print 0+ALU_LITE1_CONFIG_ADDR
+print "\n"
+print "#define ALU_LITE2_CONFIG_ADDR "
+print 0+ALU_LITE2_CONFIG_ADDR
+print "\n"
+print "#define ALU_LITE3_CONFIG_ADDR "
+print 0+ALU_LITE3_CONFIG_ADDR
+print "\n"
+print "#define MULT0_CONFIG_ADDR "
+print 0+MULT0_CONFIG_ADDR
+print "\n"
+print "#define MULT1_CONFIG_ADDR "
+print 0+MULT1_CONFIG_ADDR
+print "\n"
+print "#define MULT2_CONFIG_ADDR "
+print 0+MULT2_CONFIG_ADDR
+print "\n"
+print "#define MULT3_CONFIG_ADDR "
+print 0+MULT3_CONFIG_ADDR
+print "\n"
+print "#define BS0_CONFIG_ADDR "
+print 0+BS0_CONFIG_ADDR
+print "\n"
+print "#define ENG_CTRL_REG "
+print 0+ENG_CTRL_REG
+print "\n"
+print "#define ENG_STATUS_REG "
+print 0+ENG_STATUS_REG
+print "\n"
+print "#define ENG_FU_BASE "
+print 0+ENG_FU_BASE
+print "\n"
+print "#define ENG_MEM_BASE "
+print 0+ENG_MEM_BASE
+print "\n"
+print "#define MEM0A "
+print 0+MEM0A
+print "\n"
+print "#define MEM0B "
+print 0+MEM0B
+print "\n"
+print "#define MEM1A "
+print 0+MEM1A
+print "\n"
+print "#define MEM1B "
+print 0+MEM1B
+print "\n"
+print "#define MEM2A "
+print 0+MEM2A
+print "\n"
+print "#define MEM2B "
+print 0+MEM2B
+print "\n"
+print "#define MEM3A "
+print 0+MEM3A
+print "\n"
+print "#define MEM3B "
+print 0+MEM3B
+print "\n"
+print "#define ALU0 "
+print 0+ALU0
+print "\n"
+print "#define ALU1 "
+print 0+ALU1
+print "\n"
+print "#define ALULITE0 "
+print 0+ALULITE0
+print "\n"
+print "#define ALULITE1 "
+print 0+ALULITE1
+print "\n"
+print "#define ALULITE2 "
+print 0+ALULITE2
+print "\n"
+print "#define ALULITE3 "
+print 0+ALULITE3
+print "\n"
+print "#define MULT0 "
+print 0+MULT0
+print "\n"
+print "#define MULT1 "
+print 0+MULT1
+print "\n"
+print "#define MULT2 "
+print 0+MULT2
+print "\n"
+print "#define MULT3 "
+print 0+MULT3
+print "\n"
+print "#define BS0 "
+print 0+ BS0
+print "\n"
+quit

@@ -1,0 +1,16 @@
+# 
+
+                    ldi 0x5
+                    wrw RegMult0
+                    ldi 0x2
+                    wrw RegMult1
+                    nop
+                    nop
+                    rdw RegMult2
+                    nop
+                    ldi 0x7
+                    wrw R1
+                    ldi 0x3
+                    rdw R1
+                    nop
+                    wrw 0x7ff

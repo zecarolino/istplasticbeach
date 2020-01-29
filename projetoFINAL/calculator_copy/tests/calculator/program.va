@@ -1,0 +1,562 @@
+# Program : 
+#   Read first operand
+#   Print on VGA
+#   Read operator
+#   Print on VGA
+#   Read second operand
+#   Print on VGA
+#   Compute the result
+#   Print on VGA
+
+# R14 - result 
+# R10 - first operand
+# R11 - second operand
+# R9 - operator
+
+
+#initializtion
+begin           ldi 0x0
+                beqi VGA_clear
+return_VGA_4    ldi 0x1
+                wrw R13
+                ldi 0x0
+                wrw R10
+                wrw R9
+                wrw R11
+                wrw R14
+                wrw R12
+                beqi Rot_Operand
+                nop
+
+#print result on 7seg display
+print_on_display    rdw R14      
+                wrw RegDigit0
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit2
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit3
+# print result on VGA
+                ldi 0x0
+                beqi VGA_result
+return_VGA_5    nop
+# wait for enter or clear
+wait_for_action rdw RegBT0
+                bneqi begin_calculation
+                rdw RegBT0
+                rdw RegBT2
+                beqi wait_for_action
+                rdw RegBT2
+wait_clear      bneqi wait_clear
+                rdw RegBT2
+                rdw R14
+                wrw R10
+                ldi 0x0
+                beqi reuse_first
+                beqi wait_for_action
+                nop
+
+# return from select operand
+end_Rot_Operand rdw R12
+                beqi Save_1
+                ldi 0x0
+                beqi Save_2
+                nop
+                
+
+Save_1          rdw R1
+                wrw R10
+reuse_first     ldi 0x0
+                beqi VGA_clear2
+return_VGA_42   nop
+                ldi 0x0
+# print first operand on VGA
+                beqi VGA_first_op
+return_VGA_1    nop
+                ldi 0x1
+                wrw R12
+                ldi 0x0
+                beqi Rot_Operator
+return_operator nop
+                ldi 0x0
+# print operator on VGA
+                beqi VGA_print_operator
+return_VGA_3    nop
+                ldi 0x0
+                beqi Rot_Operand
+                nop
+Save_2          rdw R1
+                wrw R11
+                ldi 0x0
+# print second operand on VGA
+                beqi VGA_second_op
+return_VGA_2    nop
+                ldi 0x2
+                wrw R12
+                ldi 0x0
+                beqi program
+                nop
+
+########################################################################
+#Routine to chose operator
+#######################################################################
+Rot_Operator    ldi 0x0
+                wrw RegDigit1
+                wrw RegDigit2
+                wrw RegDigit3
+                wrw RegDigit0
+                wrw R9
+                ldi 0x6
+                wrw R0
+escolher_op     rdw R9
+                wrw RegDigit0
+                rdw RegBT0
+                bneqi enter_op
+                rdw RegBT0
+                rdw RegBT1
+                beqi escolher_op
+                rdw RegBT1
+wait1           bneqi wait1
+                rdw RegBT1
+                rdw R9
+                addi 0x1
+                wrw R9
+                sub R0
+                bneqi escolher_op
+                ldi 0x0
+                wrw R9
+                beqi escolher_op
+                nop
+enter_op        bneqi enter_op
+                rdw RegBT0
+                ldi 0x0
+                beqi return_operator
+                nop
+########################################################################### 
+
+
+# Rotina de escolha de operando, este é retornado no R1
+# Sõa usados os registo de R0 até R6
+# 
+# R0 - 0x1
+# R1 - operand
+# R2 - 0x10
+# R3 número a ser representado no digito atual
+# R4 número do digito atual
+# R5 used for loops
+# R6 - 0x4
+# RegBT0 - Enter
+# RegBT1 - Rotate 
+
+Rot_Operand         ldi 0x0
+                    wrw RegDigit1
+                    wrw RegDigit2
+                    wrw RegDigit3
+                    wrw RegDigit0
+                    wrw R3
+                    wrw R4
+                    wrw R1
+                    ldi 0x1
+                    wrw R0
+                    ldi 0x4
+                    wrw R6
+                    ldi 0x10
+                    wrw R2
+                    # Ao carregar no enter escolhe um digito(4 bits) 
+                    # O operando tme 16 bits por isso são precisos 4 enters
+escolher_digito     rdw RegBT0
+                    bneqi enter_digit
+                    rdw RegBT0
+                    # Ao carregar no Rotate o digito aumenta 1, quando chega a 15 volta a 0
+                    rdw RegBT1
+                    beqi escolher_digito
+                    rdw RegBT1
+button_release      bneqi button_release
+                    rdw RegBT1
+                    rdw R3
+                    addi 0x1
+                    wrw R3
+                    rdw R3
+                    sub R2
+                    bneqi skip
+                    ldi 0x0
+                    wrw R3
+                    # escreve o valor no digito correspondenete
+skip                rdw R4
+                    beqi digito0
+                    nop
+                    beqi digito1
+                    nop
+                    beqi digito2
+                    nop
+                    beqi digito3
+digito0             rdw R3
+                    wrw RegDigit0
+                    ldi 0x1
+                    bneqi escolher_digito
+digito1             rdw R3
+                    wrw RegDigit1
+                    ldi 0x1
+                    bneqi escolher_digito
+digito2             rdw R3
+                    wrw RegDigit2
+                    ldi 0x1
+                    bneqi escolher_digito
+digito3             rdw R3
+                    wrw RegDigit3
+                    ldi 0x1
+                    bneqi escolher_digito
+                    nop
+                    # è carregado no enter e o número escolhido é adicionado ao operando
+                    # é necesário faze shifts e uma soma para "concatenar" os varios digitos
+enter_digit         bneqi enter_digit  #button_release
+                    rdw RegBT0
+                    rdw R4
+                    beqi primeiro_numero
+                    wrw R5
+sum_digits          rdw R3
+                    shft 0xFFFFFFF
+                    shft 0xFFFFFFF
+                    shft 0xFFFFFFF
+                    shft 0xFFFFFFF
+                    wrw R3
+                    rdw R5
+                    bneqi sum_digits
+                    wrw R5
+primeiro_numero     rdw R1
+                    add R3
+                    wrw R1
+                    rdw R4
+                    addi 0x1
+                    wrw R4
+                    sub R6
+                    beqi end_Rot_Operand
+                    ldi 0x0
+                    wrw R3
+                    beqi escolher_digito
+                    nop
+
+##########################################################
+#Routine that do teh computation of the result
+# store on R14 the result
+##########################################################
+program         rdw R9
+                beqi do_sum
+                nop
+                beqi do_sub
+                nop
+                beqi do_mult
+                nop
+                beqi do_div
+                nop
+                beqi do_remain
+                nop
+                beqi do_power
+do_sum          nop
+                rdw R10
+                add R11
+                wrw R14
+                ldi 0x0
+                beqi print_on_display
+do_sub          rdw R10
+                sub R11
+                wrw R14
+                ldi 0x0
+                beqi print_on_display
+                nop
+do_mult         rdw R10
+                wrw RegMult0
+                rdw R11
+                wrw RegMult1
+                nop
+                nop
+                rdw RegMult2
+                wrw R14
+                ldi 0x0
+                beqi print_on_display
+do_div         rdw R10
+                wrw RegDiv0
+                rdw R11
+                wrw RegDiv1 
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division_op       beqi wait_division_op
+                    rdw RegDiv5 
+                    rdw RegDiv3
+                wrw R14
+                ldi 0x0
+                beqi print_on_display
+do_remain         rdw R10
+                wrw RegDiv0
+                rdw R11
+                wrw RegDiv1 
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division_op2       beqi wait_division_op2
+                    rdw RegDiv5 
+                    rdw RegDiv2
+                    wrw R14
+                ldi 0x0
+                beqi print_on_display
+                nop
+do_power        rdw R10
+                wrw R1
+                rdw R11
+                wrw R2
+                ldi 0x1
+                wrw R3
+                wrw R4
+power_loop          rdw R2
+                    and R4
+                    bneqi right_bit_is_one
+return_to_loop      nop
+                    rdw R2
+                    shft 0x1
+                    wrw R2
+                    rdw R1
+                    wrw RegMult0
+                    wrw RegMult1
+                    nop
+                    nop
+                    rdw RegMult2
+                    wrw R1
+                    rdw R2
+                    bneqi power_loop
+                    nop
+                    rdw R3
+                    wrw R14
+                    ldi 0x0
+                    beqi print_on_display
+right_bit_is_one    nop
+                    rdw R3
+                    wrw RegMult0
+                    rdw R1
+                    wrw RegMult1
+                    nop
+                    nop
+                    rdw RegMult2
+                    wrw R3
+                    ldi 0x0
+                    beqi return_to_loop
+                    nop
+
+
+#########################################################
+
+
+############################################################
+# Clear pressed so new calculation to be done, waitint for the button stops to be pressed
+#########################################################
+begin_calculation   bneqi begin_calculation
+                    rdw RegBT0
+                    ldi 0x0
+                    beqi begin
+                    nop
+##########################################################
+
+##########################################################
+# R0 - coordinate
+# R1 - number to VGA
+## print on VGA the first operand
+
+VGA_first_op    ldi 0x4
+                wrw R0
+                rdw R10
+                wrw R1
+VGA_loop        rdw R0
+                wrw RegVGA0
+                    rdw R1
+                    wrw RegDiv0
+                    ldi 10
+                    wrw RegDiv1
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division       beqi wait_division
+                    rdw RegDiv5 
+                    rdw RegDiv2
+                    wrw RegVGA1
+                    rdw RegDiv3
+                    wrw R1
+                rdw R0
+                bneqi VGA_loop
+                wrw R0
+                ldi 0x0
+                beqi return_VGA_1
+                nop
+
+#########################################################
+
+##########################################################
+# R0 - coordinate
+# R1 - number to VGA
+## print on VGA second operand
+
+VGA_second_op ldi 0x4
+                wrw R0
+                rdw R11
+                wrw R1
+VGA_loop_second        rdw R0
+                addi 0x8
+                wrw RegVGA0
+                    rdw R1
+                    wrw RegDiv0
+                    ldi 10
+                    wrw RegDiv1
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division_second   beqi wait_division_second
+                    rdw RegDiv5 
+                    rdw RegDiv2
+                    wrw RegVGA1
+                    rdw RegDiv3
+                    wrw R1
+                rdw R0
+                bneqi VGA_loop_second
+                wrw R0
+                    ldi 0x0
+                    beqi return_VGA_2
+                    nop
+
+#########################################################
+
+
+##########################################################
+# clear VGA
+VGA_clear    ldi 35
+                wrw R0
+VGA_loop2        rdw R0
+                wrw RegVGA0
+                ldi 31
+                wrw RegVGA1
+                rdw R0
+                bneqi VGA_loop2
+                wrw R0
+                ldi 0x0
+                beqi return_VGA_4
+
+#########################################################
+
+################################################################
+# print operator on VGA
+VGA_print_operator  ldi 0x6
+                    wrw RegVGA0
+                    rdw R9
+                    beqi VGA_do_sum
+                    nop
+                    beqi VGA_do_sub
+                    nop
+                    beqi VGA_do_mult
+                    nop
+                    beqi VGA_do_div
+                    nop
+                    beqi VGA_do_mod
+                    nop
+                    beqi VGA_do_pow
+VGA_do_sum              nop
+                    ldi 0x10
+                    wrw RegVGA1
+                    ldi 0x0
+                    beqi return_VGA_3
+VGA_do_sub              nop
+                    ldi 17
+                    wrw RegVGA1
+                    ldi 0x0
+                    beqi return_VGA_3
+VGA_do_mult              nop
+                    ldi 0x12
+                    wrw RegVGA1
+                    ldi 0x0
+                    beqi return_VGA_3
+VGA_do_div              nop
+                    ldi 0x13
+                    wrw RegVGA1
+                    ldi 0x0
+                    beqi return_VGA_3
+VGA_do_mod              nop
+                    ldi 0x14
+                    wrw RegVGA1
+                    ldi 0x0
+                    beqi return_VGA_3
+VGA_do_pow              nop
+                    ldi 0x15
+                    wrw RegVGA1
+                    ldi 0x0
+                    beqi return_VGA_3
+                    nop
+############################################################
+
+################################################################
+# print equal and the result on VGA
+VGA_result          ldi 0xe
+                    wrw RegVGA0
+                    ldi 0x18
+                    wrw RegVGA1
+                ldi 0x9
+                wrw R0
+                rdw R14
+                wrw R1
+VGA_loop52        rdw R0
+                addi 0x11
+                wrw RegVGA0
+                    rdw R1
+                    wrw RegDiv0
+                    ldi 10
+                    wrw RegDiv1
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division2   beqi wait_division2
+                    rdw RegDiv5 
+                    rdw RegDiv2
+                    wrw RegVGA1
+                    rdw RegDiv3
+                    wrw R1
+                rdw R0
+                bneqi VGA_loop52
+                wrw R0
+                    ldi 0x0
+                    beqi return_VGA_5
+                    nop
+
+############################################################
+##########################################################
+# second clear with diferent return
+VGA_clear2    ldi 35
+                wrw R0
+VGA_loop22        rdw R0
+                wrw RegVGA0
+                ldi 31
+                wrw RegVGA1
+                rdw R0
+                bneqi VGA_loop22
+                wrw R0
+                ldi 0x0
+                beqi return_VGA_42
+
+#########################################################
+
+

@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+
+import sys
+if len(sys.argv) < 2:
+	print("USAGE: vda file.hex [xdict.json]")
+	sys.exit()
+xdict = 'xdict.json'
+if len(sys.argv) > 2:
+	xdict = sys.argv[2]
+look = eval(open(xdict,'r').read())
+
+opc = [ 'addi', 'add', 'sub', 'shft', 'and', 'xor', 'ldi', 'ldih', 'rdw',
+	'wrw', 'rdwb', 'wrwb', 'beqi', 'beq', 'bneqi', 'bneq' ]
+addr, old, rep = 0, 0, 0
+for line in open(sys.argv[1], "r").readlines():
+	addr += 1
+	n = int(line, 16)
+	if old == n:
+		rep += 1
+		if rep < 3:
+			print(hex(addr), ': ...')
+	else:
+		rep = 0
+		imm = int(line[1:8],16)
+		if imm > 134217727:
+			imm = imm - 268435456
+		if imm == look.get('CPRT_BASE'):
+			out = 'CPRT_BASE'
+		elif imm >= look.get('R0') and imm <= look.get('R15'):
+			out = 'R' + str(imm-look.get('REGF_BASE'))
+		elif imm == look.get('RB'):
+			out = 'RB'
+		elif imm == look.get('RC'):
+			out = 'RC'
+		else:
+			out = str(imm)
+		print(hex(addr), ': ', opc[int(line[0],16)], ' ', out)
+	old = n
+

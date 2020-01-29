@@ -1,0 +1,173 @@
+# Read 2 operands
+# compute the sum 
+# display the result on the 7 segment display
+
+                ldi 0x1
+                wrw R13
+                ldi 0x0
+                wrw R10
+                wrw R11
+                wrw R14
+                wrw R12 #operand select
+                beqi Rot_Operand
+                nop
+program         rdw R10
+                add R11
+                wrw R14
+                wrw RegDigit0
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit2
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit3
+                ldi 0x0
+                beqi end
+                nop
+
+
+
+
+end_Rot_Operand rdw R12
+                beqi Save_1
+                nop
+                beqi Save_2
+                nop
+                
+
+
+
+Save_1          rdw R1
+                wrw R10
+                ldi 0x1
+                wrw R12
+                bneqi Rot_Operand
+                nop
+Save_2          rdw R1
+                wrw R11
+                ldi 0x2
+                wrw R12
+                bneqi program
+                nop
+
+
+
+
+
+
+
+
+# Rotina de escolha de operando, este é retornado no R1
+# Sõa usados os registo de R0 até R6
+# 
+# R0 - 0x1
+# R1 - operand
+# R2 - 0xf
+# R3 número a ser representado no digito atual
+# R4 número do digito atual
+# R5 used for loops
+# R6 - 0x4
+# RegBT0 - Enter
+# RegBT1 - Rotate 
+
+                    # inicializações
+Rot_Operand         ldi 0x0
+                    wrw RegDigit0
+                    wrw RegDigit1
+                    wrw RegDigit2
+                    wrw RegDigit3
+                    wrw R3
+                    wrw R4
+                    wrw R1
+                    ldi 0x1
+                    wrw R0
+                    ldi 0x4
+                    wrw R6
+                    ldi 0xf
+                    wrw R2
+                    # Ao carregar no enter escolhe um digito(4 bits) 
+                    # O operando tme 16 bits por isso são precisos 4 enters
+escolher_digito     rdw RegBT0
+                    bneqi enter_digit
+                    rdw RegBT0
+                    # Ao carregar no Rotate o digito aumenta 1, quando chega a 15 volta a 0
+                    rdw RegBT1
+                    beqi escolher_digito
+                    rdw RegBT1
+button_release      bneqi button_release
+                    rdw RegBT1
+                    rdw R3
+                    sub R2
+                    bneqi add_one
+                    ldi 0x0
+                    wrw R3
+add_one             rdw R3
+                    addi 0x1
+                    wrw R3
+                    # escreve o valor no digito correspondenete
+                    rdw R4
+                    beqi digito0
+                    nop
+                    beqi digito1
+                    nop
+                    beqi digito2
+                    nop
+                    beqi digito3
+digito0             rdw R3
+                    wrw RegDigit0
+                    ldi 0x1
+                    bneqi escolher_digito
+digito1             rdw R3
+                    wrw RegDigit1
+                    ldi 0x1
+                    bneqi escolher_digito
+digito2             rdw R3
+                    wrw RegDigit2
+                    ldi 0x1
+                    bneqi escolher_digito
+digito3             rdw R3
+                    wrw RegDigit3
+                    ldi 0x1
+                    bneqi escolher_digito
+                    nop
+                    # è carregado no enter e o número escolhido é adicionado ao operando
+                    # é necesário faze shifts e uma soma para "concatenar" os varios digitos
+enter_digit         bneqi enter_digit  #button_release
+                    rdw RegBT0
+                    rdw R4
+                    beqi primeiro_numero
+                    wrw R5
+sum_digits          rdw R3
+                    shft 0xFFFFFFF
+                    shft 0xFFFFFFF
+                    shft 0xFFFFFFF
+                    shft 0xFFFFFFF
+                    wrw R3
+                    rdw R5
+                    bneqi sum_digits
+                    wrw R5
+primeiro_numero     rdw R1
+                    add R3
+                    wrw R1
+                    rdw R4
+                    addi 0x1
+                    wrw R4
+                    sub R6
+                    beqi end_Rot_Operand
+                    ldi 0x0
+                    wrw R3
+                    beqi escolher_digito
+
+end                 wrw 0x7fff
+salta               bneqi end
+
+#finish by writing to invalid address to activate trap

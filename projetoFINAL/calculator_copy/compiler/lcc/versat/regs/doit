@@ -1,0 +1,12 @@
+make -C .. rcc
+rm assign assign.va assign.hex; make assign
+../obj/rcc -target=versat asgn.c > x
+./regs.sh x
+read x
+rm locals locals.va locals.hex; make locals
+../obj/rcc -target=versat locl.c > x
+./regs.sh x
+read x
+rm bubble bubble.va bubble.hex; make bubble
+../obj/rcc -target=versat bubl.c > x
+./regs.sh x

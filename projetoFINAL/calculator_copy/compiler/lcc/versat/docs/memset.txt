@@ -1,0 +1,2 @@
+0033 fffffff4	x	.memset 4294967284
+0033 0ffffff4	x	.memset -12

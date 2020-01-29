@@ -1,0 +1,42 @@
+# R1 - pow
+# R2 - exp
+# R3 - accumpower
+# R4 - 1
+                    ldi 0x5
+                    wrw R1
+                    ldi 0x3
+                    wrw R2
+
+                    ldi 0x1
+                    wrw R3
+                    wrw R4
+power_loop          rdw R2
+                    and R4
+                    bneqi right_bit_is_one
+return_to_loop      nop
+                    rdw R2
+                    shft 0x1
+                    wrw R2
+                    rdw R1
+                    wrw RegMult0
+                    wrw RegMult1
+                    nop
+                    nop
+                    rdw RegMult2
+                    wrw R1
+                    rdw R2
+                    bneqi power_loop
+                    nop
+                    wrw 0x7ff
+right_bit_is_one    nop
+                    rdw R3
+                    wrw RegMult0
+                    rdw R1
+                    wrw RegMult1
+                    nop
+                    nop
+                    rdw RegMult2
+                    wrw R3
+                    ldi 0x0
+                    beqi return_to_loop
+                    nop

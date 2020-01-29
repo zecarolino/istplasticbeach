@@ -1,0 +1,81 @@
+####STACK####
+#R0 - stack pointer
+#RB - number poped
+#R1 - 1
+#push:
+#   rdw R0
+#   sub R1
+#   wrw R0
+#   wrw RB
+#   ldi nome_endereço OR rdw R{2...20}
+#   wrwb 0x0
+#pop: 
+#   rdw RO
+#   wrw RB
+#   rdwb 0x0
+#   rdwb 0x0
+#   wrw RB
+#   rdw R0
+#   add R1
+#   wrw R0
+                    
+                    ldi 0x5
+                    wrw R2
+                    ldi 0x1
+                    wrw R1
+                    ldi STACK_BASE
+                    wrw R0
+                    nop
+                    nop
+                    nop
+                    nop
+                    nop
+                    nop
+                    rdw R0
+                    sub R1
+                    wrw R0
+                    wrw RB
+                    ldi end
+                    wrwb 0x0
+                    rdw R0
+                    sub R1
+                    wrw R0
+                    wrw RB
+                    rdw R2
+                    wrwb 0x0
+                    ldi 0x0
+                    beqi salta1
+                    nop
+                    bneqi end
+                    nop
+salta1              rdw R0
+                    wrw RB
+                    rdwb 0x0
+                    rdwb 0x0
+                    wrw RB
+                    rdw R0
+                    add R1
+                    wrw R0
+                    rdw RB
+                    wrw R5
+                    rdw R0
+                    wrw RB
+                    rdwb 0x0
+                    rdwb 0x0
+                    wrw RB
+                    rdw R0
+                    add R1
+                    wrw R0
+                    ldi 0x0
+                    beq
+                    nop
+                    nop
+                    nop
+                    nop
+                    nop
+                    nop
+                    nop
+end                 wrw 0x3ff
+salta               bneqi end
+
+#finish by writing to invalid address to activate trap

@@ -1,0 +1,51 @@
+NET "clk50" TNM_NET = "clk50";
+TIMESPEC "TS_clkin" = PERIOD "clk50" 20 ns HIGH 50 %;
+NET "clk50"  LOC = "B8";
+NET "rst"  LOC = "G12";
+
+# LED
+#NET "led<0>"  LOC = "M5";
+
+# Pin assignment for SWs
+#NET "sw<7>" LOC = "N3";  # Bank = 2, Signal name = SW7
+#NET "sw<6>" LOC = "E2";  # Bank = 3, Signal name = SW6
+#NET "sw<5>" LOC = "F3";  # Bank = 3, Signal name = SW5
+#NET "sw<4>" LOC = "G3";  # Bank = 3, Signal name = SW4
+#NET "sw<3>" LOC = "B4";  # Bank = 3, Signal name = SW3
+#NET "sw<2>" LOC = "K3";  # Bank = 3, Signal name = SW2
+#NET "sw<1>" LOC = "L3";  # Bank = 3, Signal name = SW1
+#NET "sw<0>" LOC = "P11"; # Bank = 2, Signal name = SW0
+
+# BUTTON
+NET "butt<0>"  LOC = "C11";
+NET "butt<1>"  LOC = "M4";
+NET "butt<2>"  LOC = "A7";
+
+#7ENABLE
+NET "digit<0>"  LOC = "F12";
+NET "digit<1>"  LOC = "J12";
+NET "digit<2>"  LOC = "M13";
+NET "digit<3>"  LOC = "K14";
+
+
+#7SEGMENT
+NET "segment<0>"  LOC = "L14";
+NET "segment<1>"  LOC = "H12";
+NET "segment<2>"  LOC = "N14";
+NET "segment<3>"  LOC = "N11";
+NET "segment<4>"  LOC = "P12";
+NET "segment<5>"  LOC = "L13";
+NET "segment<6>"  LOC = "M12";
+NET "segment<7>"  LOC = "N13";
+
+#VGACONTROLLER
+NET "hs"          LOC = "J14";
+NET "vs"          LOC = "K13";
+NET "rgb<0>"      LOC = "C14";
+NET "rgb<1>"      LOC = "D13";
+NET "rgb<2>"      LOC = "F13";
+NET "rgb<3>"      LOC = "F14";
+NET "rgb<4>"      LOC = "G13";
+NET "rgb<5>"      LOC = "G14";
+NET "rgb<6>"      LOC = "H13";
+NET "rgb<7>"      LOC = "J13";

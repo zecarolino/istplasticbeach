@@ -1,0 +1,2759 @@
+# VERSAT@lcc (IST: gcrs 2019)
+# R12 = SP; R11 = FP
+	ldi 1
+	wrw R12
+	ldi ADDR_W
+	addi -1
+	wrw RB
+_next	rdw RB
+	beqi _top
+	rdw R12
+	shft -1
+	wrw R12
+	rdw RB
+	addi -1
+	wrw RB
+	ldi 0
+	beqi _next
+_top	rdw R12
+	addi -1
+	addi MEM_BASE
+	wrw R12
+	wrw RB
+	ldi end
+	wrwb
+	ldi 0
+	wrw R11 #FP=0
+	beqi main
+	nop
+end	ldi 0xF
+	and R1
+	addi 0x30
+	wrw CPRT_BASE
+	ldi 0xa
+	wrw CPRT_BASE
+	ldi 1
+	wrw R12
+	ldi ADDR_W
+	wrw RB
+_again	rdw RB
+	beqi _trap
+	rdw R12
+	shft -1
+	wrw R12
+	rdw RB
+	addi -1
+	wrw RB
+	ldi 0
+	beqi _again
+_trap	rdw R12
+	addi -1
+	addi MEM_BASE
+	wrw RB
+	wrwb
+# global main
+# TEXT
+# main ncalls=7 nargs=0 used=7f2
+main	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# PUSH r6
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R6
+	wrwb
+# PUSH r7
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R7
+	wrwb
+# PUSH r8
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R8
+	wrwb
+# PUSH r9
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R9
+	wrwb
+# PUSH r10
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# alloc var space: SUB sp, 3
+	rdw R12
+	addi -3
+	wrw R12
+# main {begin} framesize=3 nofp=0
+ # reg: con
+	ldi 0
+	wrw R6
+## ASGN=1077 ##
+ # reg: con
+	ldi 1
+	wrw R8
+## ASGN=1077 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L3
+	nop
+ # LABELV
+L2	nop
+ # reg: con
+	ldi 1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R8
+## ASGN=1077 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+ # NEI1
+	rdw R6
+	sub R5
+	bneqi L5
+	nop
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L18
+	wrwb
+	ldi 0
+	beqi chooseOperand
+L18	nop
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi -1
+	wrw RB
+	rdw R1
+	wrwb
+ # JUMPV(addrj)
+	ldi 0
+	beqi L6
+	nop
+ # LABELV
+L5	nop
+## INDIR=1093 ##
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi -1
+	wrw RB
+	rdw R7
+	wrwb
+ # LABELV
+L6	nop
+ # reg: con
+	ldi 0
+	wrw R6
+## ASGN=1077 ##
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L19
+	wrwb
+	ldi 0
+	beqi chooseOperator
+L19	nop
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi -2
+	wrw RB
+	rdw R1
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L20
+	wrwb
+	ldi 0
+	beqi chooseOperand
+L20	nop
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi -3
+	wrw RB
+	rdw R1
+	wrwb
+ # INDIRI1(fpN)
+	rdw R11
+	addi -3
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+ # INDIRI1(fpN)
+	rdw R11
+	addi -2
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+ # INDIRI1(fpN)
+	rdw R11
+	addi -1
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L21
+	wrwb
+	ldi 0
+	beqi computeResult
+L21	nop
+	rdw R12
+	addi 3
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R1
+	wrw R7
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R10
+## ASGN=1077 ##
+ # LABELV
+L7	nop
+## INDIR=1093 ##
+## INDIR=1093 ##
+# SHL
+	rdw R7
+	wrw R9
+	rdw R10
+	wrw RB
+	beqi L23
+	nop
+L22	rdw R9
+	shft -1
+	wrw R9
+	rdw RB
+	addi -1
+	wrw RB
+	bneqi L22
+L23	nop
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R9
+	wrwb
+## INDIR=1093 ##
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L24
+	wrwb
+	ldi 0
+	beqi printDigitOn7Seg
+L24	nop
+	rdw R12
+	addi 2
+	wrw R12
+ # LABELV
+L8	nop
+## INDIR=1093 ##
+ # ADDI1(reg,con)
+	rdw R10
+	addi 1
+	wrw R10
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 4
+	wrw R5
+ # LTI1
+	rdw R10
+	sub R5
+	wrw RB
+	ldi 0
+	ldih 0x8000
+	and RB
+	bneqi L7
+	nop
+ # JUMPV(addrj)
+	ldi 0
+	beqi L12
+	nop
+ # LABELV
+L11	nop
+ # ADDRGP1
+	ldi RegBT0
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGP1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L25
+	wrwb
+	ldi 0
+	beqi buttonPressed
+L25	nop
+	rdw R12
+	addi 1
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R1
+	sub R4
+	bneqi L14
+	nop
+ # reg: con
+	ldi 1
+	wrw R6
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R8
+## ASGN=1077 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L15
+	nop
+ # LABELV
+L14	nop
+ # ADDRGP1
+	ldi RegBT2
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGP1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L26
+	wrwb
+	ldi 0
+	beqi buttonPressed
+L26	nop
+	rdw R12
+	addi 1
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R1
+	sub R4
+	bneqi L16
+	nop
+ # reg: con
+	ldi 0
+	wrw R8
+## ASGN=1077 ##
+ # LABELV
+L16	nop
+ # LABELV
+L15	nop
+ # LABELV
+L12	nop
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R5
+ # EQI1
+	rdw R8
+	sub R5
+	beqi L11
+	nop
+ # LABELV
+L3	nop
+ # JUMPV(addrj)
+	ldi 0
+	beqi L2
+	nop
+ # reg: con
+	ldi 0
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L1	nop
+# main {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r10
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R10
+	rdw R12
+	addi 1
+	wrw R12
+# POP r9
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R9
+	rdw R12
+	addi 1
+	wrw R12
+# POP r8
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R8
+	rdw R12
+	addi 1
+	wrw R12
+# POP r7
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R7
+	rdw R12
+	addi 1
+	wrw R12
+# POP r6
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R6
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global buttonPressed
+# buttonPressed ncalls=0 nargs=1 used=32
+buttonPressed	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# buttonPressed {begin} framesize=0 nofp=0
+ # INDIRP1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: INDIRI1(reg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L31
+	nop
+ # reg: con
+	ldi 0
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L27
+	nop
+ # LABELV
+L30	nop
+ # LABELV
+L31	nop
+ # INDIRP1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: INDIRI1(reg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L30
+	nop
+ # reg: con
+	ldi 1
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L27	nop
+# buttonPressed {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global printDigitOn7Seg
+# printDigitOn7Seg ncalls=0 nargs=2 used=30
+printDigitOn7Seg	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# printDigitOn7Seg {begin} framesize=0 nofp=0
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L34
+	nop
+ # ADDRGP1
+	ldi RegDigit0
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # ASGNI1(addr,reg)
+	rdw R5
+	wrw RB
+	rdw R4
+	wrwb
+ # JUMPV(addrj)
+	ldi 0
+	beqi L35
+	nop
+ # LABELV
+L34	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L36
+	nop
+ # ADDRGP1
+	ldi RegDigit1
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # ASGNI1(addr,reg)
+	rdw R5
+	wrw RB
+	rdw R4
+	wrwb
+ # JUMPV(addrj)
+	ldi 0
+	beqi L37
+	nop
+ # LABELV
+L36	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 2
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L38
+	nop
+ # ADDRGP1
+	ldi RegDigit2
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # ASGNI1(addr,reg)
+	rdw R5
+	wrw RB
+	rdw R4
+	wrwb
+ # JUMPV(addrj)
+	ldi 0
+	beqi L39
+	nop
+ # LABELV
+L38	nop
+ # ADDRGP1
+	ldi RegDigit3
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # ASGNI1(addr,reg)
+	rdw R5
+	wrw RB
+	rdw R4
+	wrwb
+ # LABELV
+L39	nop
+ # LABELV
+L37	nop
+ # LABELV
+L35	nop
+ # LABELV
+L33	nop
+# printDigitOn7Seg {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global chooseOperand
+# chooseOperand ncalls=5 nargs=0 used=732
+chooseOperand	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# PUSH r8
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R8
+	wrwb
+# PUSH r9
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R9
+	wrwb
+# PUSH r10
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# chooseOperand {begin} framesize=0 nofp=1
+ # reg: con
+	ldi 0
+	wrw R10
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R9
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R8
+## ASGN=1077 ##
+ # ADDRGP1
+	ldi RegDigit0
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # ADDRGP1
+	ldi RegDigit1
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # ADDRGP1
+	ldi RegDigit2
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # ADDRGP1
+	ldi RegDigit3
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # JUMPV(addrj)
+	ldi 0
+	beqi L42
+	nop
+ # LABELV
+L41	nop
+ # ADDRGP1
+	ldi RegBT0
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGP1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L48
+	wrwb
+	ldi 0
+	beqi buttonPressed
+L48	nop
+	rdw R12
+	addi 1
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R1
+	sub R4
+	bneqi L44
+	nop
+## INDIR=1093 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+# SHL
+	rdw R9
+	wrw R5
+	rdw R10
+	wrw RB
+	beqi L50
+	nop
+L49	rdw R5
+	shft -1
+	wrw R5
+	rdw RB
+	addi -1
+	wrw RB
+	bneqi L49
+L50	nop
+ # ADDI1(reg,reg)
+	rdw R8
+	add R5
+	wrw R8
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # ADDI1(reg,con)
+	rdw R10
+	addi 1
+	wrw R10
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 4
+	wrw R5
+# _mod
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R10
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L51
+	wrwb
+	ldi 0
+	beqi _mod
+L51	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R10
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R9
+## ASGN=1077 ##
+ # LABELV
+L44	nop
+ # ADDRGP1
+	ldi RegBT1
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGP1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L52
+	wrwb
+	ldi 0
+	beqi buttonPressed
+L52	nop
+	rdw R12
+	addi 1
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R1
+	sub R4
+	bneqi L46
+	nop
+## INDIR=1093 ##
+ # ADDI1(reg,con)
+	rdw R9
+	addi 1
+	wrw R9
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 16
+	wrw R5
+# _mod
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R9
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L53
+	wrwb
+	ldi 0
+	beqi _mod
+L53	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R9
+## ASGN=1077 ##
+ # LABELV
+L46	nop
+## INDIR=1093 ##
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R9
+	wrwb
+## INDIR=1093 ##
+ # ARGI1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L54
+	wrwb
+	ldi 0
+	beqi printDigitOn7Seg
+L54	nop
+	rdw R12
+	addi 2
+	wrw R12
+ # LABELV
+L42	nop
+## INDIR=1093 ##
+ # reg: con
+	ldi 4
+	wrw R5
+ # NEI1
+	rdw R10
+	sub R5
+	bneqi L41
+	nop
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R8
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L40	nop
+# chooseOperand {end}
+# POP r10
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R10
+	rdw R12
+	addi 1
+	wrw R12
+# POP r9
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R9
+	rdw R12
+	addi 1
+	wrw R12
+# POP r8
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R8
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global chooseOperator
+# chooseOperator ncalls=3 nargs=0 used=432
+chooseOperator	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# PUSH r10
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# chooseOperator {begin} framesize=0 nofp=1
+ # reg: con
+	ldi 0
+	wrw R10
+## ASGN=1077 ##
+ # ADDRGP1
+	ldi RegDigit0
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # ADDRGP1
+	ldi RegDigit1
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # ADDRGP1
+	ldi RegDigit2
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # ADDRGP1
+	ldi RegDigit3
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ASGNI1(addr,con)
+	rdw R5
+	wrw RB
+	ldi 0
+	wrwb
+ # JUMPV(addrj)
+	ldi 0
+	beqi L57
+	nop
+ # LABELV
+L56	nop
+ # ADDRGP1
+	ldi RegBT1
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGP1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L61
+	wrwb
+	ldi 0
+	beqi buttonPressed
+L61	nop
+	rdw R12
+	addi 1
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R1
+	sub R4
+	bneqi L59
+	nop
+## INDIR=1093 ##
+ # ADDI1(reg,con)
+	rdw R10
+	addi 1
+	wrw R10
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 8
+	wrw R5
+# _mod
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R10
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L62
+	wrwb
+	ldi 0
+	beqi _mod
+L62	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R10
+## ASGN=1077 ##
+ # LABELV
+L59	nop
+ # LABELV
+L57	nop
+ # ADDRGP1
+	ldi RegBT0
+	wrw R5
+ # INDIRP1(addrg)
+	rdw R5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ARGP1(reg)
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# CALL
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	ldi L63
+	wrwb
+	ldi 0
+	beqi buttonPressed
+L63	nop
+	rdw R12
+	addi 1
+	wrw R12
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R1
+	sub R4
+	bneqi L56
+	nop
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R10
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L55	nop
+# chooseOperator {end}
+# POP r10
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R10
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global computeResult
+# computeResult ncalls=3 nargs=3 used=32
+computeResult	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# computeResult {begin} framesize=0 nofp=0
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L65
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # ADDI1(reg,reg)
+	rdw R5
+	add R4
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L64
+	nop
+ # LABELV
+L65	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 1
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L67
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # SUBI1(reg,reg)
+	rdw R5
+	sub R4
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L64
+	nop
+ # LABELV
+L67	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 2
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L69
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+# _mul
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R4
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L73
+	wrwb
+	ldi 0
+	beqi _mul
+L73	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L64
+	nop
+ # LABELV
+L69	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 3
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L71
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+# _div
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R4
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L74
+	wrwb
+	ldi 0
+	beqi _div
+L74	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L64
+	nop
+ # LABELV
+L71	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 4
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+# _mod
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R4
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L75
+	wrwb
+	ldi 0
+	beqi _mod
+L75	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R5
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R5
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L64	nop
+# computeResult {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global _mul
+# _mul ncalls=0 nargs=2 used=432
+_mul	nop
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# PUSH r10
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# _mul {begin} framesize=0 nofp=0
+ # reg: con
+	ldi 0
+	wrw R10
+## ASGN=1077 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L80
+	nop
+ # LABELV
+L77	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # BANDI1(reg,con)
+	ldi 1
+	and R5
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # EQI1
+	rdw R5
+	sub R4
+	beqi L81
+	nop
+## INDIR=1093 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ADDI1(reg,reg)
+	rdw R10
+	add R5
+	wrw R10
+## ASGN=1077 ##
+ # LABELV
+L81	nop
+ # LABELV
+L78	nop
+## ASGN=1077 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # SHR 1
+	rdw R5
+	shft 1
+	wrw R5
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi 6
+	wrw RB
+	rdw R5
+	wrwb
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # SHL 1
+	rdw R5
+	shft -1
+	wrw R5
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi 5
+	wrw RB
+	rdw R5
+	wrwb
+ # LABELV
+L80	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L77
+	nop
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R10
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L76	nop
+# _mul {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r10
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R10
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global _div
+# _div ncalls=0 nargs=2 used=73a
+_div	nop
+# PUSH r3
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R3
+	wrwb
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# PUSH r8
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R8
+	wrwb
+# PUSH r9
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R9
+	wrwb
+# PUSH r10
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R10
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# _div {begin} framesize=0 nofp=0
+ # reg: con
+	ldi 1
+	wrw R9
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R8
+## ASGN=1077 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 8
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L84
+	nop
+ # reg: con
+	ldi 0
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L83
+	nop
+ # LABELV
+L84	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # NEI1
+	rdw R5
+	sub R4
+	bneqi L86
+	nop
+	ldi 0xfffff
+	ldih 0x7fff
+	wrw R1
+## RET=1269 ##
+ # JUMPV(addrj)
+	ldi 0
+	beqi L83
+	nop
+ # LABELV
+L86	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 8
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # GEI1
+	rdw R5
+	sub R4
+	wrw RB
+	ldi 0
+	ldih 0x8000
+	and RB
+	beqi L88
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 8
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # NEG
+	ldi -1
+	xor R5
+	addi 1
+	wrw R5
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi 8
+	wrw RB
+	rdw R5
+	wrwb
+ # reg: con
+	ldi 1
+	wrw R8
+## ASGN=1077 ##
+ # LABELV
+L88	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # GEI1
+	rdw R5
+	sub R4
+	wrw RB
+	ldi 0
+	ldih 0x8000
+	and RB
+	beqi L90
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # NEG
+	ldi -1
+	xor R5
+	addi 1
+	wrw R5
+ # ASGNI1(fpN,reg)
+	rdw R11
+	addi 9
+	wrw RB
+	rdw R5
+	wrwb
+ # reg: con
+	ldi 1
+	wrw R5
+## INDIR=1093 ##
+ # SUBI1(reg,reg)
+	rdw R5
+	sub R8
+	wrw R8
+## ASGN=1077 ##
+ # LABELV
+L90	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R10
+## ASGN=1077 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 8
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+## ASGN=1077 ##
+ # reg: con
+	ldi 0
+	wrw R4
+## ASGN=1077 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+ # EQI1
+	rdw R5
+	sub R4
+	beqi L92
+	nop
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R3
+## ASGN=1077 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+ # EQI1
+	rdw R3
+	sub R4
+	beqi L92
+	nop
+## INDIR=1093 ##
+## INDIR=1093 ##
+ # GEI1
+	rdw R3
+	sub R5
+	wrw RB
+	ldi 0
+	ldih 0x8000
+	and RB
+	beqi L92
+	nop
+ # JUMPV(addrj)
+	ldi 0
+	beqi L95
+	nop
+ # LABELV
+L94	nop
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # SHL 1
+	rdw R10
+	shft -1
+	wrw R10
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # SHL 1
+	rdw R9
+	shft -1
+	wrw R9
+## ASGN=1077 ##
+ # LABELV
+L95	nop
+## INDIR=1093 ##
+ # SHL 1
+	rdw R10
+	shft -1
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 8
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # SUBI1(reg,reg)
+	rdw R5
+	sub R4
+	wrw R5
+ # reg: con
+	ldi 0
+	wrw R4
+ # LTI1
+	rdw R5
+	sub R4
+	wrw RB
+	ldi 0
+	ldih 0x8000
+	and RB
+	bneqi L94
+	nop
+ # JUMPV(addrj)
+	ldi 0
+	beqi L98
+	nop
+ # LABELV
+L97	nop
+## INDIR=1093 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ADDI1(reg,reg)
+	rdw R10
+	add R5
+	wrw R10
+## ASGN=1077 ##
+## INDIR=1093 ##
+ # ADDI1(reg,con)
+	rdw R9
+	addi 1
+	wrw R9
+## ASGN=1077 ##
+ # LABELV
+L98	nop
+## INDIR=1093 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 9
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+ # ADDI1(reg,reg)
+	rdw R10
+	add R5
+	wrw R5
+ # INDIRI1(fpN)
+	rdw R11
+	addi 8
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+ # LEI1
+	rdw R5
+	sub R4
+	addi -1
+	wrw RB
+	ldi 0
+	ldih 0x8000
+	and RB
+	bneqi L97
+	nop
+ # LABELV
+L92	nop
+## INDIR=1093 ##
+ # reg: con
+	ldi 0
+	wrw R5
+ # EQI1
+	rdw R8
+	sub R5
+	beqi L100
+	nop
+## INDIR=1093 ##
+ # NEG
+	ldi -1
+	xor R9
+	addi 1
+	wrw R9
+## ASGN=1077 ##
+ # LABELV
+L100	nop
+## INDIR=1093 ##
+ # LOADI1(reg)
+	rdw R9
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L83	nop
+# _div {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r10
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R10
+	rdw R12
+	addi 1
+	wrw R12
+# POP r9
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R9
+	rdw R12
+	addi 1
+	wrw R12
+# POP r8
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R8
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# POP r3
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R3
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# global _mod
+# _mod ncalls=2 nargs=2 used=3a
+_mod	nop
+# PUSH r3
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R3
+	wrwb
+# PUSH r4
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R4
+	wrwb
+# PUSH r5
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R5
+	wrwb
+# save fp: PUSH fp; MOV fp, sp
+	rdw R12
+	addi -1
+	wrw R12
+	wrw RB
+	rdw R11
+	wrwb
+	rdw R12
+	wrw R11
+# _mod {begin} framesize=0 nofp=0
+ # INDIRI1(fpN)
+	rdw R11
+	addi 5
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+## ASGN=1077 ##
+ # INDIRI1(fpN)
+	rdw R11
+	addi 6
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+## ASGN=1077 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+# _div
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R4
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R5
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L103
+	wrwb
+	ldi 0
+	beqi _div
+L103	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R3
+## ASGN=1077 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+# _mul
+	rdw R12
+	addi -1
+	wrw RB
+	rdw R4
+	wrwb
+	rdw R12
+	addi -2
+	wrw RB
+	rdw R3
+	wrwb
+	rdw R12
+	addi -3
+	wrw R12
+	wrw RB
+	ldi L104
+	wrwb
+	ldi 0
+	beqi _mul
+L104	rdw R12
+	addi 2
+	wrw R12
+	rdw R1
+	wrw R4
+## ASGN=1077 ##
+## INDIR=1093 ##
+## INDIR=1093 ##
+ # SUBI1(reg,reg)
+	rdw R5
+	sub R4
+	wrw R1
+## RET=1269 ##
+ # LABELV
+L102	nop
+# _mod {end}
+# restore fp: MOV sp, fp; POP fp
+	rdw R11
+	wrw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R11
+	rdw R12
+	addi 1
+	wrw R12
+# POP r5
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R5
+	rdw R12
+	addi 1
+	wrw R12
+# POP r4
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R4
+	rdw R12
+	addi 1
+	wrw R12
+# POP r3
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw R3
+	rdw R12
+	addi 1
+	wrw R12
+# RET
+	rdw R12
+	wrw RB
+	rdwb
+	rdwb
+	wrw RB
+	rdw R12
+	addi 1
+	wrw R12
+	ldi 0
+	beq RB
+	nop
+
+# BSS
+# global RegDigit3
+RegDigit3	.memset 0x00
+# global RegDigit2
+RegDigit2	.memset 0x00
+# global RegDigit1
+RegDigit1	.memset 0x00
+# global RegDigit0
+RegDigit0	.memset 0x00
+# global RegBT2
+RegBT2	.memset 0x00
+# global RegBT1
+RegBT1	.memset 0x00
+# global RegBT0
+RegBT0	.memset 0x00
+_end	.memset 0
+### The end ###

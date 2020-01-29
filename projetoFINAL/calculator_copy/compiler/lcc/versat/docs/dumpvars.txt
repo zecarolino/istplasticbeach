@@ -1,0 +1,20 @@
+pi@raspi:~/gonga/Coisas/versat $ time ./fibiter 
+VCD info: dumpfile xtop.vcd opened for output.
+ 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+0
+Execution time in clock cycles: 50604
+
+real	0m15.616s
+user	0m15.400s
+sys	0m0.170s
+pi@raspi:~/gonga/Coisas/versat $ vi fibiter
+    %vpi_call/w 2 47 "$dumpfile", "xtop.vcd" {0 0 0};
+    %vpi_call/w 2 48 "$dumpvars" {0 0 0};
+pi@raspi:~/gonga/Coisas/versat $ time ./fibiter 
+ 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+0
+Execution time in clock cycles: 50604
+
+real	0m9.031s
+user	0m8.980s
+sys	0m0.010s

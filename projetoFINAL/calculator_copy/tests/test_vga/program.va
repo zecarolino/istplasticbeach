@@ -1,0 +1,48 @@
+##########################################################
+#CLEAR 
+                ldi 35
+                wrw R0
+VGA_loop2        rdw R0
+                wrw RegVGA0
+                ldi 31
+                wrw RegVGA1
+                rdw R0
+                bneqi VGA_loop2
+                wrw R0
+
+##########################################################
+# R0 - coordinate
+# R1 - number to VGA
+                
+                ldi 0x9
+                wrw R1
+VGA_first_op    ldi 0x4
+                wrw R0
+VGA_loop        ldi 0xa
+                add R0
+                wrw RegVGA0
+                    rdw R1
+                    wrw RegDiv0
+                    ldi 10
+                    wrw RegDiv1
+                    ldi 0x1
+                    wrw RegDiv4
+                    ldi 0x0
+                    wrw RegDiv4
+                    rdw RegDiv5
+wait_division       beqi wait_division
+                    rdw RegDiv5 
+                    rdw RegDiv2
+                    wrw RegVGA1
+                    rdw RegDiv3
+                    wrw R1
+                rdw R0
+                bneqi VGA_loop
+                wrw R0
+end                 wrw 0x7ff
+                    ldi 0x1
+salta               bneqi end
+
+#########################################################
+
+

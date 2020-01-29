@@ -1,0 +1,485 @@
+####STACK####
+#R0 - stack pointer
+#RB - number poped
+#R1 - 1
+####CALC####
+#R2 - first operand
+#R3 - operator
+#R4 - second operand
+#R5 - result
+#####BT#####
+# RegBT0 - Enter
+# RegBT1 - Rotate
+# RegBT2 - Clear
+############
+
+
+                # inicializações da stack
+                ldi STACK_BASE
+                wrw R0
+                ldi 0x1
+                wrw R1
+                # inicializações do 7-seg display
+                ldi 0x0
+                wrw RegDigit0
+                wrw RegDigit1
+                wrw RegDigit2
+                wrw RegDigit3
+                # program starts
+begin           rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi first_op
+                wrwb 0x0
+                ldi 0x0
+                beqi choose_operand
+first_op        nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R2 
+                #TODO - print on VGA
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi operator
+                wrwb 0x0 
+                ldi 0x0
+                beqi choose_operator
+operator        nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R3
+                #TODO - print on VGA
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi need2operand
+                wrwb 0x0
+                ldi 0x0
+                beqi need2operand
+isneed2operand  nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                bneqi compute
+                nop
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi second_op
+                wrwb 0x0
+                ldi 0x0
+                beqi choose_operand
+second_op       nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R4
+                #TODO - print on VGA
+compute         rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi done
+                wrwb 0x0
+                ldi 0x0
+                beqi calcAndPrint
+done            nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R5
+                ## ENTER go to first_op(push operand)
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi enterpressed
+                wrwb 0x0
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi RegBT0
+                wrwb 0x0
+                ldi 0x0
+                beqi btpressed
+enterpressed    nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                beqi check_clear
+                nop
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                rdw R5
+                wrwb 0x0
+                ldi 0x0
+                beqi first_op
+                ## CLEAR go to choose_operand(push first_op)
+check_clear     nop 
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi clearpressed
+                wrwb 0x0
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi RegBT2
+                wrwb 0x0
+                ldi 0x0
+                beqi btpressed
+clearpressed    nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                beqi done
+                nop
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi first_op
+                wrwb 0x0
+                ldi 0x0
+                beqi choose_operand
+                nop
+end             wrw 0x7fff
+                bneqi end
+               
+### ROUTINE choose_operand (CO)#############################
+# Inputs - return address
+# outputs - operand
+# Ao carregar no enter é escolhido um digito do operando,
+# cada digito tem 4 bits, o operando tem 16 no total,
+# cada digito é impresso no 7 seg display
+# R0 ... R10 reserved
+# R11 - the digit being choosena
+# R12 - iterator
+# R13 - number on digit
+# R14 - operand
+# R15 - 0x4
+#
+##############################
+                # inicializações
+choose_operand  ldi 0x0
+                wrw RegDigit0
+                wrw RegDigit1
+                wrw RegDigit2
+                wrw RegDigit3
+                wrw R11
+                ldi 0x4
+                wrw R15
+CO_begin        rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi CO_enter
+                wrwb 0x0
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi RegBT0
+                wrwb 0x0
+                ldi 0x0
+                beqi btpressed
+CO_enter        nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                bneqi CO_digit_done
+                nop
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi CO_rotate
+                wrwb 0x0
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi RegBT1
+                wrwb 0x0
+                ldi 0x0
+                beqi btpressed
+CO_rotate       nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                bneqi CO_rotate_digit
+                nop
+                bneqi CO_begin
+CO_digit_done   nop
+                rdw R11
+                beqi CO_first_d
+                wrw R12
+CO_sum_digits   rdw R13
+                shft 0xFFFFFFF
+                shft 0xFFFFFFF
+                shft 0xFFFFFFF
+                shft 0xFFFFFFF
+                wrw R13
+                rdw R11
+                bneqi CO_sum_digits
+                wrw R11
+CO_first_d      rdw R14 # operand
+                add R13
+                wrw R14
+                rdw R11 # digit beign choosen
+                addi 0x1
+                wrw R11
+                sub R15
+                beqi CO_end
+                ldi 0x0
+                wrw R13
+                beqi CO_begin
+CO_end          nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R20
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                rdw R14
+                wrwb 0x0
+                ldi 0x0
+                beq R20
+                nop
+##########END CO###########################
+
+
+#####Choose Operator(COp) #################
+# inputs - return address
+# outputs - operator
+##########################################
+choose_operator rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R20
+                # TODO finish this routine
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi 0x0
+                wrwb 0x0
+                ldi 0x0
+                beq R20
+                nop
+#########END COp###########################
+
+########need2operand(n2o) #################
+# inputs - return address
+# outpus - 0 é preciso 2 operando, caso contrário não
+###########################################
+need2operand    rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R20
+                # TODO finish this routine
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                ldi 0x0
+                wrwb 0x0
+                ldi 0x0
+                beq R20
+                nop
+#########END n2o###########################
+
+########calcAndPrint (cap)#################
+#inputs - return add
+#outputs - result
+###########################################
+    #TODO FINISH THIS ROUTINE
+calcAndPrint    rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R20
+                rdw R4
+                add R2
+                wrw R19
+                wrw RegDigit0
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit2
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                shft 0x1
+                wrw RegDigit3
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                rdw R19
+                wrwb 0x0
+                ldi 0x0
+                beq R20
+                nop
+########END cap###########################
+
+######btpressed(btp)######################
+# inputs - button, return add
+# return - 1 if button pressed
+# R19 - 1 if button pressed
+# R20 - return address
+##########################################
+btpressed       rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                ldi 0x0
+                wrw R19
+                rdwb 0x0
+                rdwb 0x0
+                bneqi btp_presssed
+                nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R20
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                rdw R19
+                wrwb 0x0
+                ldi 0x0
+                beq R20
+btp_presssed    nop
+                rdwb 0x0
+                rdwb 0x0
+                bneqi btp_presssed
+                nop
+                rdw R0
+                wrw RB
+                rdwb 0x0
+                rdwb 0x0
+                wrw RB 
+                rdw R0
+                add R1
+                wrw R0
+                rdw RB
+                wrw R20
+                rdw R0
+                sub R1
+                wrw R0
+                wrw RB
+                rdw R19
+                wrwb 0x0
+                ldi 0x0
+                beq R20
+                nop
+######END btp#############################
